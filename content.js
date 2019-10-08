@@ -1,16 +1,57 @@
 chrome.runtime.onMessage.addListener(gotMessage);
+
+var fullscreen = false;
+var chatDisplay;
+var vidParentWidth;
+var vidParentHeight;
+var vidGrandParentWidth;
+var vidGrandParentHeight;
+
+var video;
+var videoParent;
+var videoGrandParent;
+var chat;
+
+
 function gotMessage(message,sender,sendresponse)
 {
-    var video = document.getElementsByTagName('video');
-    var videoParent = video[0].parentNode;
-    var videoGrandParent = video[0].parentNode.parentNode;
-    var chat = document.getElementsByClassName("_6445 _6j32");
+    getDOMElements();
+    if(!fullscreen)
+    {
+        setVideoToFullscreen();
+    }
+    else {
+        minimizeVideo();
+    }
+
+    fullscreen = !fullscreen;
+}
+
+function getDOMElements(){
+    video = document.getElementsByTagName('video');
+    videoParent = video[0].parentNode;
+    videoGrandParent = video[0].parentNode.parentNode;
+    chat = document.getElementsByClassName("_6445 _6j32");
  
-    chat[0].style['display'] = "none";
+    chatDisplay = 'block';
+    vidParentHeight = videoParent.style['height'];
+    vidParentWidth = videoParent.style['width'];
+    vidGrandParentHeight = videoGrandParent.style["height"];
+    vidGrandParentWidth = videoGrandParent.style["width"];
+}
 
-    videoParent.style['width'] = '-webkit-fill-available';
-    videoParent.style['height'] = '95vh';
+function setVideoToFullscreen(){
+    setStylesForDOMElems('none', '-webkit-fill-available', '95vh', 'auto', '-webkit-fill-available')
+}
 
-    videoGrandParent.style["width"] = "auto";
-    videoGrandParent.style["height"] = "-webkit-fill-available";
+function minimizeVideo(){
+    setStylesForDOMElems(chatDisplay, vidParentWidth, vidParentHeight, vidGrandParentWidth, vidGrandParentHeight);
+}
+
+function setStylesForDOMElems(chatDisplay, vidParentWidth, vidParentHeight, vidGrandParentWidth, vidGrandParentHeight){
+    chat[0].style['display'] = chatDisplay;
+    videoParent.style['width'] = vidParentWidth;
+    videoParent.style['height'] = vidParentHeight;
+    videoGrandParent.style["width"] = vidGrandParentWidth;
+    videoGrandParent.style["height"] = vidGrandParentHeight;
 }
