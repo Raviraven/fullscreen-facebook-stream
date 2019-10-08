@@ -1,7 +1,7 @@
 chrome.runtime.onMessage.addListener(gotMessage);
 function gotMessage(message,sender,sendresponse)
 {
-    alert(message.message);
+    alert("Extension started");
 
     var video = document.getElementsByTagName('video');
     console.log(video);
