@@ -4,9 +4,6 @@ function gotMessage(message,sender,sendresponse)
     alert("Extension started");
 
     var video = document.getElementsByTagName('video');
-    console.log(video);
-    console.log(video[0].parentNode);
-    console.log(video[0].parentNode.parentNode);
     var parent = video[0].parentNode.parentNode;
 
     //var video = document.getElementsByClassName("_1c_u _5-yb _302m");
