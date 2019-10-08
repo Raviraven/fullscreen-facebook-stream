@@ -18,9 +18,7 @@
 
      },
      "permissions":[
-        "activeTab",
         "tabs",
-        "background",
-        "idle"
+        "background"
     ]
 } 
