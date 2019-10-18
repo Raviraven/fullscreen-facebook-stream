@@ -20,5 +20,9 @@
      "permissions":[
         "tabs",
         "background"
-    ]
+    ],
+    "icons":{
+       "64": "appIcon64.png",
+       "128": "appIcon128.png"
+    }
 } 
